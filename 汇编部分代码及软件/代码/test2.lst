@@ -1,0 +1,62 @@
+Microsoft (R) Macro Assembler Version 6.11		    03/11/20 14:32:31
+tempfile.asm						     Page 1 - 1
+
+
+				.386
+ 0000				DATA SEGMENT USE16
+ 0000 000B			A1 DW 11
+ 0002 0017			B1 DW 23
+ 0004 000D			C1 DW 13
+ 0006 0029			D1 DW 41
+ 0008 0000			E1 DW 0
+ = 0037				F1 EQU 55
+ 000A				DATA ENDS
+ 0000				STACK SEGMENT USE16 STACK
+ 0000  00C8 [			    DB 200 DUP(?)
+        00
+       ]
+ 00C8				STACK ENDS
+ 0000				CODE SEGMENT USE16
+				    ASSUME DS:DATA, SS:STACK, CS:CODE
+ 0000  B8 ---- R		START: MOV AX, DATA
+ 0003  8E D8			       MOV DS, AX
+ 0005  A1 0000 R		       MOV AX, A1
+ 0008  03 06 0002 R		       ADD AX, B1
+ 000C  2B 06 0004 R		       SUB AX, C1
+ 0010  C1 F8 03			       SAR AX, 3
+ 0013  6B C0 37			       IMUL AX, F1
+ 0016  03 06 0006 R		       ADD AX, D1
+ 001A  A3 0008 R		       MOV E1, AX
+ 001D  B4 4C			       MOV AH, 4CH
+ 001F  CD 21			       INT 21H
+ 0021				CODE ENDS
+				    END START
+Microsoft (R) Macro Assembler Version 6.11		    03/11/20 14:32:31
+tempfile.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+CODE . . . . . . . . . . . . . .	16 Bit	 0021	  Para	  Private 
+DATA . . . . . . . . . . . . . .	16 Bit	 000A	  Para	  Private 
+STACK  . . . . . . . . . . . . .	16 Bit	 00C8	  Para	  Stack	  
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+A1 . . . . . . . . . . . . . . .	Word	 0000	  DATA	
+B1 . . . . . . . . . . . . . . .	Word	 0002	  DATA	
+C1 . . . . . . . . . . . . . . .	Word	 0004	  DATA	
+D1 . . . . . . . . . . . . . . .	Word	 0006	  DATA	
+E1 . . . . . . . . . . . . . . .	Word	 0008	  DATA	
+F1 . . . . . . . . . . . . . . .	Number	 0037h	 
+START  . . . . . . . . . . . . .	L Near	 0000	  CODE	
+
+	   0 Warnings
+	   0 Errors

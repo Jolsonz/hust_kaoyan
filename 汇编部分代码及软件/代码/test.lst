@@ -1,0 +1,90 @@
+Microsoft (R) Macro Assembler Version 6.11		    03/11/20 15:39:10
+tempfile.asm						     Page 1 - 1
+
+
+				.386
+ 0000				DATA SEGMENT USE16
+ 0000 50 6C 65 61 73 65		INPUT DB 'Please input X(0~9):$'
+       20 69 6E 70 75 74
+       20 58 28 30 7E 39
+       29 3A 24
+ 0015 0000 0001 0008 001B	TAB DW 0,1,8,27,64,125,216,343,512,729
+       0040 007D 00D8
+       0157 0200 02D9
+ 0029 00			X DB ?
+ 002A 0000			XXX DW ?
+ 002C 0A 0D 49 6E 70 75		INERR DB 0AH,0DH,'Input error! try again',0AH,0DH,'$'
+       74 20 65 72 72 6F
+       72 21 20 74 72 79
+       20 61 67 61 69 6E
+       0A 0D 24
+ 0047				DATA ENDS
+
+ 0000				STACK SEGMENT USE16 STACK
+ 0000  00C8 [			      DB 200 DUP(0);缓冲�?
+        00
+       ]
+ 00C8				STACK  ENDS
+
+ 0000				CODE   SEGMENT USE16
+				       ASSUME CS:CODE,DS:DATA,SS:STACK
+ 0000  B8 ---- R		BEGIN: MOV AX,DATA
+ 0003  8E D8			       MOV DS,AX
+ 0005  8D 16 0000 R		NEXT:  LEA DX,INPUT
+ 0009  B4 09			       MOV AH,9
+ 000B  CD 15			       INT 21;输出Input
+ 000D  B4 01			       MOV AH,1
+ 000F  CD 21			       INT 21H;输入一个值到AL
+ 0011  3C 30			       CMP AL,'0'
+ 0013  72 1D			       JB ERR
+ 0015  3C 39			       CMP AL,'9'
+ 0017  77 19			       JA ERR
+ 0019  24 0F			       AND AL,0FH;这个操作有什么意义？不是AL不变么�?
+ 001B  A2 0029 R		       MOV X,AL
+ 001E  66| 33 DB		       XOR EBX,EBX
+ 0021  8A D8			       MOV BL,AL
+ 0023  67& 8B 04 5D		       MOV AX,TAB[EBX*2]
+       00000015 R
+ 002B  A3 002A R		       MOV XXX,AX
+ 002E  B4 4C			EXIT:  MOV AH,4CH
+ 0030  CD 15			       INT 21
+ 0032  BA 002C R		ERR:   MOV DX,OFFSET INERR
+ 0035  B4 09			       MOV AH,9
+ 0037  CD 21			       INT 21H
+ 0039  EB CA			       JMP NEXT
+ 003B				CODE   ENDS
+				       END BEGIN
+
+
+
+Microsoft (R) Macro Assembler Version 6.11		    03/11/20 15:39:10
+tempfile.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+CODE . . . . . . . . . . . . . .	16 Bit	 003B	  Para	  Private 
+DATA . . . . . . . . . . . . . .	16 Bit	 0047	  Para	  Private 
+STACK  . . . . . . . . . . . . .	16 Bit	 00C8	  Para	  Stack	  
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+BEGIN  . . . . . . . . . . . . .	L Near	 0000	  CODE	
+ERR  . . . . . . . . . . . . . .	L Near	 0032	  CODE	
+EXIT . . . . . . . . . . . . . .	L Near	 002E	  CODE	
+INERR  . . . . . . . . . . . . .	Byte	 002C	  DATA	
+INPUT  . . . . . . . . . . . . .	Byte	 0000	  DATA	
+NEXT . . . . . . . . . . . . . .	L Near	 0005	  CODE	
+TAB  . . . . . . . . . . . . . .	Word	 0015	  DATA	
+XXX  . . . . . . . . . . . . . .	Word	 002A	  DATA	
+X  . . . . . . . . . . . . . . .	Byte	 0029	  DATA	
+
+	   0 Warnings
+	   0 Errors

@@ -1,0 +1,45 @@
+Microsoft (R) Macro Assembler Version 6.11		    03/11/20 14:49:08
+tempfile.asm						     Page 1 - 1
+
+
+ 0000				data segment
+ 0000 68 65 6C 6C 6F 20		msg db 'hello world$';这个美元符号好像是结束符的作用,否则会输出乱码
+       77 6F 72 6C 64 24
+ 000C				data ends
+ 0000				code segment
+				assume ds:data, cs:code
+ 0000				start:
+ 0000  B8 ---- R		mov ax,data
+ 0003  8E D8			mov ds, ax
+ 0005  8D 16 0000 R		lea dx, msg
+ 0009  B4 09			mov ah, 09h
+ 000B  CD 21			int 21h
+ 000D  B4 4C			mov ah, 4ch
+ 000F  CD 21			int 21h
+ 0011				code ends
+				end start
+
+
+Microsoft (R) Macro Assembler Version 6.11		    03/11/20 14:49:08
+tempfile.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0011	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 000C	  Para	  Private 
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+msg  . . . . . . . . . . . . . .	Byte	 0000	  data	
+start  . . . . . . . . . . . . .	L Near	 0000	  code	
+
+	   0 Warnings
+	   0 Errors

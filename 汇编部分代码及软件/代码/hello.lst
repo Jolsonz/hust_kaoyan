@@ -1,0 +1,61 @@
+Microsoft (R) Macro Assembler Version 6.11		    03/11/20 14:57:27
+tempfile.asm						     Page 1 - 1
+
+
+ 0000				data segment
+ 0000 48 65 6C 6C 6F 20		out1 db 'Hello world$'
+       77 6F 72 6C 64 24
+ 000C 4D 79 20 6E 61 6D		out2 db 'My name is DJX$'
+       65 20 69 73 20 44
+       4A 58 24
+ 001B				data ends
+
+ 0000				code segment
+				assume cs:code; ds:data
+ 0000				start:
+ 0000  B8 ---- R		mov ax,data
+ 0003  8E D8			mov ds,ax
+
+ 0005  8D 16 0000 R		lea dx,out1
+ 0009  B4 09			mov ah,9
+ 000B  CD 21			int 21h
+
+ 000D  B2 0A			mov dl,0ah
+ 000F  B4 02			mov ah,2
+ 0011  CD 21			int 21h
+ 0013  B2 0D			mov dl,0dh
+ 0015  B4 02			mov ah,2
+ 0017  CD 21			int 21h
+
+ 0019  8D 16 000C R		lea dx,out2
+ 001D  B4 09			mov ah,9
+ 001F  CD 21			int 21h
+
+ 0021  B4 4C			mov ah,4ch
+ 0023  CD 21			int 21h
+ 0025				code ends
+				end start 
+Microsoft (R) Macro Assembler Version 6.11		    03/11/20 14:57:27
+tempfile.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0025	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 001B	  Para	  Private 
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+out1 . . . . . . . . . . . . . .	Byte	 0000	  data	
+out2 . . . . . . . . . . . . . .	Byte	 000C	  data	
+start  . . . . . . . . . . . . .	L Near	 0000	  code	
+
+	   0 Warnings
+	   0 Errors

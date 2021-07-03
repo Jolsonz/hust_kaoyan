@@ -1,0 +1,30 @@
+.386
+DATA SEGMENT USE16
+BUF DB 'add ax, bx',0DH,0AH
+    DB 'sub cx, 10',0DH,0AH
+    DB 'mov dx, 1234h',0DH,0AH,'$'
+DATA ENDS
+STACK SEGMENT USE16 STACK
+      DB 200 DUP(0)
+STACK ENDS
+CODE SEGMENT USE16
+    ASSUME DS:DATA,SS:STACK,CS:CODE
+BEGIN: MOV AX,DATA
+       MOV DS,AX
+       LEA BX,BUF
+LOPA:  MOV DL,[BX]
+       CMP DL,'$'
+       JE EXIT
+       CMP DL,'a'
+       JB L1;如果DL的内容不是小写字母，转L1
+       CMP DL,'z'
+       JA L1;
+       SUB DL,20H
+L1: MOV AH,2
+    INT 21H;2号调用，输出DL的内容
+    INC BX
+    JMP LOPA
+EXIT: MOV AH,4CH
+      INT 21
+CODE ENDS
+END BEGIN
