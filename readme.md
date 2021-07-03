@@ -18,3 +18,10 @@
 
 如果对你有用，可以点个star。
 
+## 其它
+
+由于有时github抽风，我在gitee上也放了一份
+
+[本仓库github地址](https://github.com/Jolsonz/hust_kaoyan)
+
+[本仓库码云地址](https://gitee.com/Jolsonz/hust_kaoyan)
