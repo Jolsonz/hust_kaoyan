@@ -15,14 +15,12 @@
 - 这个部分主要放的是一些用dosbox写的汇编练习程序。为什么用dosbox，是因为在这玩意儿好调试，我貌似是在[这个视频](https://www.bilibili.com/video/BV1Nt411V7fa)中看到的，单用masm需要用命令行调试，没界面，比较麻烦。
 - 软件文档下放的dosbox和masm，我也忘了怎么使用的了。如果需要写汇编代码调试从而加深理解，可自行百度。
 
-## 请勿用于商业用途
+## 其它
 
 - 如果有人发现文档中的错误也可以指出并在文档上修改，也祝各位考研顺利。如果有什么问题可以留issues或评论。
 - 如果对你有用，可以点个star。
 
-## 其它
-
-由于有时github抽风，我在gitee上也放了一份
+在gitee上也放了一份
 
 [本仓库github地址](https://github.com/Jolsonz/hust_kaoyan)
 
